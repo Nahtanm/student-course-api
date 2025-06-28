@@ -2,12 +2,17 @@ package com.nscode.student_course_api.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +27,10 @@ public class Student implements Serializable {
 	private String name;
 	private String email;
 	private LocalDate birthDate;
+
+	@ManyToMany
+	@JoinTable(name = "tb_students_courses",joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+	private List<Course> courses = new ArrayList<>();
 
 	public Student() {
 		super();
@@ -65,6 +74,10 @@ public class Student implements Serializable {
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
 	}
 
 	@Override

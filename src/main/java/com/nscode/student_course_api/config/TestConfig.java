@@ -33,6 +33,9 @@ public class TestConfig implements CommandLineRunner {
 		Student s1 = new Student(null, "Alice Silva", "alice@gmail.com", LocalDate.parse("2004-07-20"));
 		Student s2 = new Student(null, "Bruno Costa", "bruno@gmail.com", LocalDate.parse("2002-01-15"));
 
+		s1.getCourses().addAll(Arrays.asList(c2,c3));
+		s2.getCourses().add(c1);
+		
 		courseRepository.saveAll(Arrays.asList(c1, c2, c3));
 		studentRepository.saveAll(Arrays.asList(s1, s2));
 	}

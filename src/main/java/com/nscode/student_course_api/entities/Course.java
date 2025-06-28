@@ -1,6 +1,8 @@
 package com.nscode.student_course_api.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.nscode.student_course_api.entities.enums.CourseLevel;
@@ -11,6 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +31,9 @@ public class Course implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private CourseLevel courseLevel;
+	
+	@ManyToMany(mappedBy = "courses")
+	private List<Student> students = new ArrayList<>(); 
 
 	public Course() {
 		super();
@@ -71,6 +77,10 @@ public class Course implements Serializable {
 
 	public void setCourseLevel(CourseLevel courseLevel) {
 		this.courseLevel = courseLevel;
+	}
+
+	public List<Student> getStudents() {
+		return students;
 	}
 
 	@Override
