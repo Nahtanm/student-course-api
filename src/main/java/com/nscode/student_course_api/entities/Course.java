@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nscode.student_course_api.entities.enums.CourseLevel;
 
 import jakarta.persistence.Entity;
@@ -32,6 +33,7 @@ public class Course implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CourseLevel courseLevel;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "courses")
 	private List<Student> students = new ArrayList<>(); 
 
