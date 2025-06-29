@@ -33,7 +33,7 @@ public class StudentService {
 	public Student update(Integer id, Student student) {
 		Student entity = studentRepository.getReferenceById(id);
 		updateData(entity, student);
-		return entity;
+		return studentRepository.save(entity);
 	}
 
 	private void updateData(Student entity, Student student) {
